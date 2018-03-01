@@ -94,6 +94,11 @@ RB_METHOD(spriteHeight)
 	return rb_fix_new(value);
 }
 
+RB_METHOD(spriteClone)
+{
+	rb_raise(rb_eTypeError, "can't clone ");
+}
+
 void
 spriteBindingInit()
 {
@@ -105,6 +110,7 @@ spriteBindingInit()
 	viewportElementBindingInit<Sprite>(klass);
 
 	_rb_define_method(klass, "initialize", spriteInitialize);
+	_rb_define_method(klass, "clone", spriteClone);
 
 	INIT_PROP_BIND( Sprite, Bitmap,    "bitmap"     );
 	INIT_PROP_BIND( Sprite, SrcRect,   "src_rect"   );

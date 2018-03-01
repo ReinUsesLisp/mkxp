@@ -41,6 +41,11 @@ RB_METHOD(planeInitialize)
 	return self;
 }
 
+RB_METHOD(planeClone)
+{
+	rb_raise(rb_eTypeError, "can't clone ");
+}
+
 DEF_PROP_OBJ_REF(Plane, Bitmap, Bitmap, "bitmap")
 DEF_PROP_OBJ_VAL(Plane, Color,  Color,  "color")
 DEF_PROP_OBJ_VAL(Plane, Tone,   Tone,   "tone")
@@ -64,6 +69,7 @@ planeBindingInit()
 	viewportElementBindingInit<Plane>(klass);
 
 	_rb_define_method(klass, "initialize", planeInitialize);
+	_rb_define_method(klass, "clone", planeClone);
 
 	INIT_PROP_BIND( Plane, Bitmap,    "bitmap"     );
 	INIT_PROP_BIND( Plane, OX,        "ox"         );

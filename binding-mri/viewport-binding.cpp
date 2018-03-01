@@ -76,6 +76,11 @@ RB_METHOD(viewportInitialize)
 	return self;
 }
 
+RB_METHOD(viewportClone)
+{
+	rb_raise(rb_eTypeError, "can't clone ");
+}
+
 DEF_PROP_OBJ_VAL(Viewport, Rect,  Rect,  "rect")
 DEF_PROP_OBJ_VAL(Viewport, Color, Color, "color")
 DEF_PROP_OBJ_VAL(Viewport, Tone,  Tone,  "tone")
@@ -95,6 +100,7 @@ viewportBindingInit()
 	sceneElementBindingInit<Viewport>(klass);
 
 	_rb_define_method(klass, "initialize", viewportInitialize);
+	_rb_define_method(klass, "clone", viewportClone);
 
 	INIT_PROP_BIND( Viewport, Rect,  "rect"  );
 	INIT_PROP_BIND( Viewport, OX,    "ox"    );

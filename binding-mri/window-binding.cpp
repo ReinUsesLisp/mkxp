@@ -50,6 +50,11 @@ RB_METHOD(windowUpdate)
 	return Qnil;
 }
 
+RB_METHOD(windowClone)
+{
+	rb_raise(rb_eTypeError, "can't clone ");
+}
+
 DEF_PROP_OBJ_REF(Window, Bitmap, Windowskin, "windowskin")
 DEF_PROP_OBJ_REF(Window, Bitmap, Contents,   "contents")
 DEF_PROP_OBJ_VAL(Window, Rect,   CursorRect, "cursor_rect")
@@ -80,6 +85,7 @@ windowBindingInit()
 
 	_rb_define_method(klass, "initialize", windowInitialize);
 	_rb_define_method(klass, "update",     windowUpdate);
+	_rb_define_method(klass, "clone",      windowClone);
 
 	INIT_PROP_BIND( Window, Windowskin,      "windowskin"       );
 	INIT_PROP_BIND( Window, Contents,        "contents"         );

@@ -130,6 +130,11 @@ RB_METHOD(tilemapGetViewport)
 	return rb_iv_get(self, "viewport");
 }
 
+RB_METHOD(tilemapClone)
+{
+	rb_raise(rb_eTypeError, "can't clone ");
+}
+
 DEF_PROP_OBJ_REF(Tilemap, Bitmap,   Tileset,    "tileset")
 DEF_PROP_OBJ_REF(Tilemap, Table,    MapData,    "map_data")
 DEF_PROP_OBJ_REF(Tilemap, Table,    FlashData,  "flash_data")
@@ -159,6 +164,8 @@ tilemapBindingInit()
 	_rb_define_method(klass, "update", tilemapUpdate);
 
 	_rb_define_method(klass, "viewport", tilemapGetViewport);
+
+	_rb_define_method(klass, "clone", tilemapClone);
 
 	INIT_PROP_BIND( Tilemap, Tileset,    "tileset"    );
 	INIT_PROP_BIND( Tilemap, MapData,    "map_data"   );
